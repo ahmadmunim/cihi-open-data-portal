@@ -151,6 +151,169 @@ public class datasets extends JFrame{
 
         centerPanel.add(buttonPanel);
 
+        // Panel for Upload
+        
+        JPanel datasetPanel = new JPanel();
+        datasetPanel.setLayout(new BoxLayout(datasetPanel, BoxLayout.X_AXIS));
+        datasetPanel.setBackground(Color.LIGHT_GRAY);
+
+        JPanel filterPanel = new JPanel();
+        filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
+
+        JPanel subtitlePanel = new JPanel();
+        subtitlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel txtDataset = new JLabel("Datasets");
+        txtDataset.setFont(new Font("Arial", Font.BOLD, 30));
+        txtDataset.setAlignmentX(Component.LEFT_ALIGNMENT);
+        subtitlePanel.add(txtDataset);
+        filterPanel.add(subtitlePanel);
+
+        JLabel viewSubheader = new JLabel("Veiw By");
+        viewSubheader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        viewSubheader.setFont(new Font("Arial", Font.BOLD, 20));
+        filterPanel.add(viewSubheader);
+
+        JPanel filterButtonPanel = new JPanel();
+        filterButtonPanel.setLayout(new BoxLayout(filterButtonPanel, BoxLayout.Y_AXIS));
+        filterButtonPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        JButton diseases = new JButton("Diseases");
+        filterButtonPanel.add(diseases);
+
+        JButton demographic = new JButton("Demogroaphics");
+        filterButtonPanel.add(demographic);
+
+        JButton date = new JButton("Date");
+        filterButtonPanel.add(date);
+
+        JButton location = new JButton("Location");
+        filterButtonPanel.add(location);
+
+        //edit font size to change gap from bottom of page
+        JLabel filler = new JLabel(" ");
+        filler.setFont(new Font("Arial", Font.BOLD, 190));
+        filler.setOpaque(false);
+        filterButtonPanel.add(filler);
+
+        filterPanel.add(filterButtonPanel);
+
+
+        JPanel dataPanel = new JPanel();
+        dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
+
+        JPanel subtitlePanel2 = new JPanel();
+        subtitlePanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel txtLatest = new JLabel("Latest Data");
+        txtLatest.setFont(new Font("Arial", Font.BOLD, 30));
+        subtitlePanel2.add(txtLatest);
+        txtLatest.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataPanel.add(subtitlePanel2);
+
+        JPanel latestDatasetPanel = new JPanel(new GridLayout(1, 3, 20, 20));
+        //latestDatasetPanel.setLayout(new BoxLayout(latestDatasetPanel, BoxLayout.X_AXIS));
+
+        JPanel data1 = new JPanel();
+        data1.setLayout(new BoxLayout(data1, BoxLayout.Y_AXIS));
+        data1.setBackground(Color.decode("#00a19a"));
+
+        JLabel dataTitle1 = new JLabel("Sample Data");
+        dataTitle1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataTitle1.setForeground(Color.WHITE);
+        dataTitle1.setFont(new Font("Arial", Font.BOLD, 20));
+        data1.add(dataTitle1);
+
+        JLabel dataDate1 = new JLabel("Sample Date");
+        dataDate1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDate1.setForeground(Color.WHITE);
+        dataDate1.setFont(new Font("Arial", Font.ITALIC, 12));
+        data1.add(dataDate1);
+        JTextArea dataDesc1 = new JTextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quam metus, vehicula non justo vel, pretium congue metus. Maecenas scelerisque diam in placerat elementum. Sed dignissim nulla viverra interdum bibendum. Duis eget neque nec libero ultricies vulputate vel id metus. Nam aliquam posuere lorem, non pulvinar nisl lacinia vitae. Proin in bibendum dui.");
+        dataDesc1.setForeground(Color.WHITE);
+        dataDesc1.setLineWrap(true);
+        dataDesc1.setWrapStyleWord(true);
+        dataDesc1.setFocusable(false);
+        dataDesc1.setOpaque(false);
+        dataDesc1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDesc1.setMaximumSize(new Dimension(250,250));
+        data1.add(dataDesc1);
+        latestDatasetPanel.add(data1);
+
+        JPanel data2 = new JPanel();
+        data2.setLayout(new BoxLayout(data2, BoxLayout.Y_AXIS));
+        data2.setBackground(Color.decode("#00a19a"));
+
+        JLabel dataTitle2 = new JLabel("Sample Data");
+        dataTitle2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataTitle2.setForeground(Color.WHITE);
+        dataTitle2.setFont(new Font("Arial", Font.BOLD, 20));
+        data2.add(dataTitle2);
+
+        JLabel dataDate2 = new JLabel("Sample Date");
+        dataDate2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDate2.setForeground(Color.WHITE);
+        dataDate2.setFont(new Font("Arial", Font.ITALIC, 12));
+        data2.add(dataDate2);
+        JTextArea dataDesc2 = new JTextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quam metus, vehicula non justo vel, pretium congue metus. Maecenas scelerisque diam in placerat elementum. Sed dignissim nulla viverra interdum bibendum. Duis eget neque nec libero ultricies vulputate vel id metus. Nam aliquam posuere lorem, non pulvinar nisl lacinia vitae. Proin in bibendum dui.");
+        dataDesc2.setForeground(Color.WHITE);
+        dataDesc2.setLineWrap(true);
+        dataDesc2.setWrapStyleWord(true);
+        dataDesc2.setFocusable(false);
+        dataDesc2.setOpaque(false);
+        dataDesc2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDesc2.setMaximumSize(new Dimension(250,250));
+        data2.add(dataDesc2);
+        latestDatasetPanel.add(data2);
+
+        JPanel data3 = new JPanel();
+        data3.setLayout(new BoxLayout(data3, BoxLayout.Y_AXIS));
+        data3.setBackground(Color.decode("#00a19a"));
+
+        JLabel dataTitle3 = new JLabel("Sample Data");
+        dataTitle3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataTitle3.setForeground(Color.WHITE);
+        dataTitle3.setFont(new Font("Arial", Font.BOLD, 20));
+        data3.add(dataTitle3);
+
+        JLabel dataDate3 = new JLabel("Sample Date");
+        dataDate3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDate3.setForeground(Color.WHITE);
+        dataDate3.setFont(new Font("Arial", Font.ITALIC, 12));
+        data3.add(dataDate3);
+        JTextArea dataDesc3 = new JTextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quam metus, vehicula non justo vel, pretium congue metus. Maecenas scelerisque diam in placerat elementum. Sed dignissim nulla viverra interdum bibendum. Duis eget neque nec libero ultricies vulputate vel id metus. Nam aliquam posuere lorem, non pulvinar nisl lacinia vitae. Proin in bibendum dui.");
+        dataDesc3.setForeground(Color.WHITE);
+        dataDesc3.setLineWrap(true);
+        dataDesc3.setWrapStyleWord(true);
+        dataDesc3.setFocusable(false);
+        dataDesc3.setOpaque(false);
+        dataDesc3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dataDesc3.setMaximumSize(new Dimension(250,250));
+        data3.add(dataDesc3);
+        latestDatasetPanel.add(data3);
+
+        dataPanel.add(latestDatasetPanel);
+
+        JPanel selectionPanel = new JPanel(new GridLayout(1, 3, 20, 20));
+        //selectionPanel.setLayout(new BoxLayout(selectionPanel, BoxLayout.X_AXIS));
+        selectionPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton viewData1 = new JButton("View Data");
+        selectionPanel.add(viewData1);
+
+        JButton viewData2 = new JButton("View Data");
+        selectionPanel.add(viewData2);
+
+        JButton viewData3 = new JButton("View Data");
+        selectionPanel.add(viewData3);
+
+        dataPanel.add(selectionPanel);
+        
+        datasetPanel.add(filterPanel);
+        datasetPanel.add(dataPanel);
+
+        centerPanel.add(datasetPanel);
+
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
