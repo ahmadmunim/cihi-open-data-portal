@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class home extends JFrame {
-public home() {
-        setTitle("Home");
+public class news extends JFrame{
+    public news() {
+        setTitle("News");
         ImageIcon frameLogo = new ImageIcon(getClass().getResource("mapleLeaf.png"));
         setIconImage(frameLogo.getImage());
         setSize(800, 600);
@@ -78,11 +78,19 @@ public home() {
         loginRegisterPanel.setPreferredSize(new Dimension(120,78));
         northPanel.add(loginRegisterPanel, BorderLayout.EAST);
 
-        // Central panel for buttons
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
-        
-        ImageIcon homeBtnIcon = new ImageIcon(getClass().getResource("home.png"));
-        JButton homeBtn = new JButton(homeBtnIcon);
+        // Center panel
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setMaximumSize(new Dimension(800, 50));
+        buttonPanel.setBackground(Color.decode("#00a19a"));
+
+        JButton homeBtn = new JButton("Home");
+        homeBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        homeBtn.setBackground(Color.decode("#00a19a"));
         homeBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new home().setVisible(true);
@@ -91,8 +99,9 @@ public home() {
         });
         buttonPanel.add(homeBtn);
 
-        ImageIcon uploadBtnIcon = new ImageIcon(getClass().getResource("upload.png"));
-        JButton uploadBtn = new JButton(uploadBtnIcon);
+        JButton uploadBtn = new JButton("Upload");
+        uploadBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        uploadBtn.setBackground(Color.decode("#00a19a"));
         uploadBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new upload().setVisible(true);
@@ -101,8 +110,9 @@ public home() {
         });
         buttonPanel.add(uploadBtn);
 
-        ImageIcon aboutBtnIcon = new ImageIcon(getClass().getResource("about.png"));
-        JButton aboutBtn = new JButton(aboutBtnIcon);
+        JButton aboutBtn = new JButton("About");
+        aboutBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        aboutBtn.setBackground(Color.decode("#00a19a"));
         aboutBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new about().setVisible(true);
@@ -111,8 +121,9 @@ public home() {
         });
         buttonPanel.add(aboutBtn);
 
-        ImageIcon dataBtnIcon = new ImageIcon(getClass().getResource("datasets.png"));
-        JButton dataBtn = new JButton(dataBtnIcon);
+        JButton dataBtn = new JButton("Datasets");
+        dataBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        dataBtn.setBackground(Color.decode("#00a19a"));
         dataBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new datasets().setVisible(true);
@@ -121,18 +132,15 @@ public home() {
         });
         buttonPanel.add(dataBtn);
 
-        ImageIcon newsBtnIcon = new ImageIcon(getClass().getResource("news.png"));
-        JButton newsBtn = new JButton(newsBtnIcon);
-        newsBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new news().setVisible(true);
-                dispose();
-            }
-        });
+        JButton newsBtn = new JButton("News");
+        newsBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        newsBtn.setBackground(Color.decode("#00a19a"));
+        newsBtn.setEnabled(false);
         buttonPanel.add(newsBtn);
 
-        ImageIcon contactBtnIcon = new ImageIcon(getClass().getResource("contact.png"));
-        JButton contactBtn = new JButton(contactBtnIcon);
+        JButton contactBtn = new JButton("Contact");
+        contactBtn.setFont(new Font("Arial", Font.PLAIN, 33));
+        contactBtn.setBackground(Color.decode("#00a19a"));
         contactBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new contact().setVisible(true);
@@ -140,20 +148,18 @@ public home() {
             }
         });
         buttonPanel.add(contactBtn);
-        
+
+        centerPanel.add(buttonPanel);
 
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
-        add(buttonPanel, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
     }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            home frame = new home();
+            news frame = new news();
             frame.setVisible(true);
         });
     }
-
 }
-
-   

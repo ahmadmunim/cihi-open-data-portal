@@ -108,21 +108,45 @@ public class login extends JFrame{
         JButton aboutBtn = new JButton("About");
         aboutBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         aboutBtn.setBackground(Color.decode("#00a19a"));
+        aboutBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new about().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(aboutBtn);
 
         JButton dataBtn = new JButton("Datasets");
         dataBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         dataBtn.setBackground(Color.decode("#00a19a"));
+        dataBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new datasets().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(dataBtn);
 
         JButton newsBtn = new JButton("News");
         newsBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         newsBtn.setBackground(Color.decode("#00a19a"));
+        newsBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new news().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(newsBtn);
 
         JButton contactBtn = new JButton("Contact");
         contactBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         contactBtn.setBackground(Color.decode("#00a19a"));
+        contactBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new contact().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(contactBtn);
 
         // Panel for login
