@@ -151,6 +151,52 @@ public class contact extends JFrame{
 
         centerPanel.add(buttonPanel);
 
+        // Panel for login
+        JPanel contactPanel = new JPanel();
+        contactPanel.setLayout(new BoxLayout(contactPanel, BoxLayout.Y_AXIS));
+        contactPanel.setBackground(Color.LIGHT_GRAY);
+        JLabel txtContact = new JLabel("Contact Us");
+        txtContact.setFont(new Font("Arial", Font.BOLD, 30));
+        txtContact.setAlignmentX(Component.CENTER_ALIGNMENT);
+        contactPanel.add(txtContact);
+
+        JPanel name = new JPanel();
+        name.setLayout(new BoxLayout(name, BoxLayout.X_AXIS));
+
+        JTextField first = new JTextField("First Name");
+        first.setMaximumSize(new Dimension(200,30));
+        name.add(first);
+
+        JTextField last = new JTextField("Last Name");
+        last.setMaximumSize(new Dimension(200,30));
+        name.add(last);
+
+        contactPanel.add(name);
+
+        JTextField email = new JTextField("Email");
+        email.setMaximumSize(new Dimension(300,30));
+        contactPanel.add(email);
+
+        JTextArea message = new JTextArea("Type message here");
+        message.setLineWrap(true);
+        message.setWrapStyleWord(true);
+        JScrollPane scrollMsg = new JScrollPane(message);
+        scrollMsg.setMaximumSize(new Dimension(400,400));
+        contactPanel.add(scrollMsg);
+
+        JLabel error = new JLabel(" ");
+        error.setFont(new Font("Arial", Font.BOLD, 15));
+        error.setForeground(Color.RED);
+        contactPanel.add(error);
+
+        JButton sendBtn = new JButton("Send Email");
+        contactPanel.add(sendBtn);
+        sendBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        centerPanel.add(buttonPanel);
+        contactPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        centerPanel.add(contactPanel);
+
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
