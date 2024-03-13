@@ -97,6 +97,12 @@ public class login extends JFrame{
         JButton uploadBtn = new JButton("Upload");
         uploadBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         uploadBtn.setBackground(Color.decode("#00a19a"));
+        uploadBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new upload().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(uploadBtn);
 
         JButton aboutBtn = new JButton("About");

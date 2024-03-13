@@ -93,6 +93,12 @@ public home() {
 
         ImageIcon uploadBtnIcon = new ImageIcon(getClass().getResource("upload.png"));
         JButton uploadBtn = new JButton(uploadBtnIcon);
+        uploadBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new upload().setVisible(true);
+                dispose();
+            }
+        });
         buttonPanel.add(uploadBtn);
 
         ImageIcon aboutBtnIcon = new ImageIcon(getClass().getResource("about.png"));

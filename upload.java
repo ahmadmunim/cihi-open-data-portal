@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class register  extends JFrame{
-    public register() {
-        setTitle("Register");
+public class upload extends JFrame{
+    public upload() {
+        setTitle("Upload Data");
         ImageIcon frameLogo = new ImageIcon(getClass().getResource("mapleLeaf.png"));
         setIconImage(frameLogo.getImage());
         setSize(800, 600);
@@ -54,12 +54,17 @@ public class register  extends JFrame{
         loginRegisterPanel.setLayout(new BoxLayout(loginRegisterPanel, BoxLayout.Y_AXIS)); // Set layout
         JButton loginButton = new JButton("Login");
         JButton registerButton = new JButton("Register");
-        registerButton.setEnabled(false);
         loginButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         registerButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new login().setVisible(true);
+                dispose();
+            }
+        });
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new register().setVisible(true);
                 dispose();
             }
         });
@@ -97,12 +102,7 @@ public class register  extends JFrame{
         JButton uploadBtn = new JButton("Upload");
         uploadBtn.setFont(new Font("Arial", Font.PLAIN, 33));
         uploadBtn.setBackground(Color.decode("#00a19a"));
-        uploadBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new upload().setVisible(true);
-                dispose();
-            }
-        });
+        uploadBtn.setEnabled(false);
         buttonPanel.add(uploadBtn);
 
         JButton aboutBtn = new JButton("About");
@@ -125,57 +125,112 @@ public class register  extends JFrame{
         contactBtn.setBackground(Color.decode("#00a19a"));
         buttonPanel.add(contactBtn);
 
-        // Panel for Register
-        JPanel registerPanel = new JPanel();
-        registerPanel.setLayout(new BoxLayout(registerPanel, BoxLayout.Y_AXIS));
-        registerPanel.setBackground(Color.LIGHT_GRAY);
-
-        JLabel txtLogin = new JLabel("Register");
-        txtLogin.setFont(new Font("Arial", Font.BOLD, 30));
-        txtLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
-        registerPanel.add(txtLogin);
-
-        JPanel name = new JPanel();
-        name.setLayout(new BoxLayout(name, BoxLayout.X_AXIS));
-
-        JTextField first = new JTextField("First Name");
-        first.setMaximumSize(new Dimension(200,30));
-        name.add(first);
-
-        JTextField last = new JTextField("Last Name");
-        last.setMaximumSize(new Dimension(200,30));
-        name.add(last);
-
-        registerPanel.add(name);
-
-        JTextField email = new JTextField("Email");
-        email.setMaximumSize(new Dimension(300,30));
-        registerPanel.add(email);
-
-        JTextField pass = new JTextField("Password");
-        pass.setMaximumSize(new Dimension(300,30));
-        registerPanel.add(pass);
-
-        JTextField passReEnter = new JTextField("Re-Enter Password");
-        passReEnter.setMaximumSize(new Dimension(300,30));
-        registerPanel.add(passReEnter);
-
-        JLabel error = new JLabel(" ");
-        error.setFont(new Font("Arial", Font.BOLD, 15));
-        error.setForeground(Color.RED);
-        registerPanel.add(error);
-
-        JPanel registerBtnPanel = new JPanel();
-        registerBtnPanel.setLayout(new BoxLayout(registerBtnPanel, BoxLayout.X_AXIS));
-
-        JButton registerBtn = new JButton("Register");
-        registerBtnPanel.add(registerBtn);
-
-        registerPanel.add(registerBtnPanel);
-
         centerPanel.add(buttonPanel);
-        registerPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
-        centerPanel.add(registerPanel);
+
+        // Panel for Upload
+        
+        JPanel uploadPanel = new JPanel();
+        uploadPanel.setLayout(new BoxLayout(uploadPanel, BoxLayout.Y_AXIS));
+        uploadPanel.setBackground(Color.LIGHT_GRAY);
+
+        JPanel subtitlePanel = new JPanel();
+        subtitlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel txtUpload = new JLabel("Upload Data");
+        txtUpload.setFont(new Font("Arial", Font.BOLD, 30));
+        txtUpload.setAlignmentX(Component.LEFT_ALIGNMENT);
+        subtitlePanel.add(txtUpload);
+
+        uploadPanel.add(subtitlePanel);
+
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        inputPanel.setBackground(Color.LIGHT_GRAY);
+
+            JPanel descPanel = new JPanel();
+            descPanel.setLayout(new BoxLayout(descPanel, BoxLayout.Y_AXIS));
+            descPanel.setPreferredSize(new Dimension(250,250));
+            descPanel.setBackground(Color.LIGHT_GRAY);
+        
+            JTextField dataName = new JTextField("Dataset Name *");
+            dataName.setMaximumSize(new Dimension(300,30));
+            descPanel.add(dataName);
+
+            JTextField dateOFPub = new JTextField("Date of Publication *");
+            dateOFPub.setMaximumSize(new Dimension(300,30));
+            descPanel.add(dateOFPub);
+
+            JTextArea dataDesc = new JTextArea("Description of Dataset *");
+            dataDesc.setLineWrap(true);
+            dataDesc.setWrapStyleWord(true);
+            JScrollPane scrollDesc = new JScrollPane(dataDesc);
+            descPanel.add(scrollDesc);
+
+            JPanel tagPanel = new JPanel();
+            tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.Y_AXIS));
+            tagPanel.setPreferredSize(new Dimension(250,250));
+            tagPanel.setBackground(Color.LIGHT_GRAY);
+
+            JTextField inputTag = new JTextField("Related Topics *");
+            inputTag.setMaximumSize(new Dimension(300,30));
+            tagPanel.add(inputTag);
+
+            JPanel addRemove = new JPanel();
+            addRemove.setLayout(new BoxLayout(addRemove, BoxLayout.X_AXIS));
+            JButton add = new JButton("Add");
+            addRemove.setBackground(Color.LIGHT_GRAY);
+            addRemove.add(add);
+
+            JButton remove = new JButton("Remove");
+            addRemove.add(remove);
+
+            tagPanel.add(addRemove);
+
+            JTextArea tags = new JTextArea("Your dataset must contain tags so it can be searched");
+            tags.setFocusable(false);
+            tags.setLineWrap(true);
+            tags.setWrapStyleWord(true);
+            JScrollPane scrollTags = new JScrollPane(tags);
+            tagPanel.add(scrollTags);
+
+            JPanel filePanel = new JPanel();
+            filePanel.setLayout(new BoxLayout(filePanel, BoxLayout.Y_AXIS));
+            filePanel.setPreferredSize(new Dimension(250,250));
+            filePanel.setBackground(Color.LIGHT_GRAY);
+
+            JButton uploadFileBtn = new JButton("Select File... *");
+            uploadFileBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+            filePanel.add(uploadFileBtn);
+
+            JLabel fileTypesData = new JLabel("File types allowed: .csv, .json, .xlsx");
+            fileTypesData.setAlignmentX(Component.CENTER_ALIGNMENT);
+            filePanel.add(fileTypesData);
+
+            JButton uploadHeaderBtn = new JButton("Select Header Image...");
+            uploadHeaderBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+            filePanel.add(uploadHeaderBtn);
+
+            JLabel fileTypesHeader = new JLabel("File types allowed: .png, .pdf, .jpg, .jpeg");
+            fileTypesHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+            filePanel.add(fileTypesHeader);
+
+        inputPanel.add(descPanel);
+        inputPanel.add(tagPanel);
+        inputPanel.add(filePanel);
+
+
+
+        uploadPanel.add(inputPanel);
+
+        JButton uploadDataset = new JButton("Upload Dataset");
+        uploadPanel.add(uploadDataset);
+        uploadDataset.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel required = new JLabel("* Indicates a required field...");
+        uploadPanel.add(required);
+        required.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        centerPanel.add(uploadPanel);
 
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
@@ -185,7 +240,7 @@ public class register  extends JFrame{
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            register frame = new register();
+            upload frame = new upload();
             frame.setVisible(true);
         });
     }
