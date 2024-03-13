@@ -151,6 +151,108 @@ public class about extends JFrame{
 
         centerPanel.add(buttonPanel);
 
+        // Panel for About
+        
+        JPanel aboutPanel = new JPanel();
+        aboutPanel.setLayout(new BoxLayout(aboutPanel, BoxLayout.Y_AXIS));
+        aboutPanel.setBackground(Color.decode("#00a19a"));
+
+        JPanel subtitlePanel = new JPanel();
+        subtitlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel txtAbout = new JLabel("About CIHI");
+        txtAbout.setFont(new Font("Arial", Font.BOLD, 30));
+        txtAbout.setAlignmentX(Component.CENTER_ALIGNMENT);
+        subtitlePanel.add(txtAbout);
+
+        aboutPanel.add(subtitlePanel);
+
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        infoPanel.setBackground(Color.decode("#00a19a"));
+
+            JPanel imgPanel = new JPanel();
+            imgPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+            imgPanel.setPreferredSize(new Dimension(200,200));
+            imgPanel.setBackground(Color.decode("#00a19a"));
+        
+            ImageIcon aboutImg = new ImageIcon(getClass().getResource("aboutimg.png"));
+            JLabel img = new JLabel(aboutImg);
+            imgPanel.add(img);
+
+            JPanel aboutInfo = new JPanel();
+            aboutInfo.setLayout(new BoxLayout(aboutInfo, BoxLayout.Y_AXIS));
+            aboutInfo.setPreferredSize(new Dimension(350,350));
+            aboutInfo.setBackground(Color.white);
+
+            JLabel subHeader = new JLabel("Our Strategic Plan");
+            subHeader.setFont(new Font("Arial", Font.BOLD, 15));
+            subHeader.setAlignmentX(CENTER_ALIGNMENT);
+            aboutInfo.add(subHeader);
+
+            JTextArea infoText = new JTextArea("After holding extensive consultations with stakeholders across the country to better understand their needs, both now and in the future, CIHI completed its Strategic Plan, 2022 to 2027 (PDF). Over the next 5 years, CIHI will focus its efforts on delivering comparable and actionable information to accelerate improvements in health care system performance.\n" + //
+                                "\n" + //
+                                " We will focus on a number of health information priorities, including\n" + //
+                                "-Children and youth\n" + //
+                                "-Community and primary care \n" + //
+                                "-Equity \n" + //
+                                "-First Nations, Inuit and Métis Peoples\n" + //
+                                "-Health systems and public health links \n" + //
+                                "-Health workforce \n" + //
+                                "-Mental health and substance use \n" + //
+                                "-Seniors and aging\n" + //
+                                "-Virtual care ");
+            infoText.setFocusable(false);
+            infoText.setLineWrap(true);
+            infoText.setWrapStyleWord(true);
+            aboutInfo.add(infoText);
+
+            JPanel overallReportPanel = new JPanel();
+            overallReportPanel.setLayout(new BoxLayout(overallReportPanel, BoxLayout.Y_AXIS));
+            overallReportPanel.setBackground(Color.decode("#00a19a"));
+
+            JPanel reportPanel = new JPanel();
+            reportPanel.setLayout(new BoxLayout(reportPanel, BoxLayout.Y_AXIS));
+            reportPanel.setPreferredSize(new Dimension(200,100));
+            reportPanel.setBackground(Color.white);
+
+            JLabel subHeader2 = new JLabel("Our Annual Report");
+            subHeader2.setFont(new Font("Arial", Font.BOLD, 15));
+            subHeader2.setAlignmentX(CENTER_ALIGNMENT);
+            reportPanel.add(subHeader2);
+
+            JTextArea infoText2 = new JTextArea("The annual report provides an overview of CIHI, our corporate achievements this past fiscal year, priorities for the upcoming year and a summary of the audited financial statements.");
+            infoText2.setFocusable(false);
+            infoText2.setLineWrap(true);
+            infoText2.setWrapStyleWord(true);
+            reportPanel.add(infoText2);
+
+            overallReportPanel.add(reportPanel);
+
+            JLabel gap = new JLabel(" ");
+            overallReportPanel.add(gap);
+            overallReportPanel.add(gap);
+
+            JButton annualReport = new JButton("Read our annual report\n(PDF)");
+            annualReport.setAlignmentX(Component.CENTER_ALIGNMENT);
+            overallReportPanel.add(annualReport);
+
+            overallReportPanel.add(gap);
+
+            JButton strategicPlan = new JButton("Read our strategic plan\n(PDF)");
+            strategicPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
+            overallReportPanel.add(strategicPlan);
+
+        infoPanel.add(imgPanel);
+        infoPanel.add(aboutInfo);
+        infoPanel.add(overallReportPanel);
+
+
+
+        aboutPanel.add(infoPanel);
+
+        centerPanel.add(aboutPanel);
+
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
