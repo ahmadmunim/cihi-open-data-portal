@@ -2,7 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class register  extends JFrame{
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class register extends JFrame {
     public register() {
         setTitle("Register");
         ImageIcon frameLogo = new ImageIcon(getClass().getResource("mapleLeaf.png"));
@@ -38,11 +43,11 @@ public class register  extends JFrame{
         JPanel searchPanel = new JPanel();
         searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
         JTextField searchBar = new JTextField("Search Datasets", 15);
-        searchBar.setMaximumSize(new Dimension(300,30));
+        searchBar.setMaximumSize(new Dimension(300, 30));
 
         ImageIcon searchIcon = new ImageIcon(getClass().getResource("search.png"));
         Image searchImage = searchIcon.getImage();
-        searchImage = searchImage.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        searchImage = searchImage.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
         ImageIcon scaledSearchIcon = new ImageIcon(searchImage);
         JButton searchButton = new JButton(scaledSearchIcon);
         searchButton.setBorderPainted(false);
@@ -66,11 +71,11 @@ public class register  extends JFrame{
         loginRegisterPanel.add(loginButton);
         loginRegisterPanel.add(registerButton);
 
-        logoPanel.setMaximumSize(new Dimension(65,78));
+        logoPanel.setMaximumSize(new Dimension(65, 78));
         northPanel.add(logoPanel, BorderLayout.WEST);
         northPanel.add(titlePanel, BorderLayout.WEST);
         northPanel.add(searchPanel, BorderLayout.CENTER);
-        loginRegisterPanel.setPreferredSize(new Dimension(120,78));
+        loginRegisterPanel.setPreferredSize(new Dimension(120, 78));
         northPanel.add(loginRegisterPanel, BorderLayout.EAST);
 
         // Center panel
@@ -163,25 +168,25 @@ public class register  extends JFrame{
         name.setLayout(new BoxLayout(name, BoxLayout.X_AXIS));
 
         JTextField first = new JTextField("First Name");
-        first.setMaximumSize(new Dimension(200,30));
+        first.setMaximumSize(new Dimension(200, 30));
         name.add(first);
 
         JTextField last = new JTextField("Last Name");
-        last.setMaximumSize(new Dimension(200,30));
+        last.setMaximumSize(new Dimension(200, 30));
         name.add(last);
 
         registerPanel.add(name);
 
         JTextField email = new JTextField("Email");
-        email.setMaximumSize(new Dimension(300,30));
+        email.setMaximumSize(new Dimension(300, 30));
         registerPanel.add(email);
 
         JTextField pass = new JTextField("Password");
-        pass.setMaximumSize(new Dimension(300,30));
+        pass.setMaximumSize(new Dimension(300, 30));
         registerPanel.add(pass);
 
         JTextField passReEnter = new JTextField("Re-Enter Password");
-        passReEnter.setMaximumSize(new Dimension(300,30));
+        passReEnter.setMaximumSize(new Dimension(300, 30));
         registerPanel.add(passReEnter);
 
         JLabel error = new JLabel(" ");
@@ -193,6 +198,21 @@ public class register  extends JFrame{
         registerBtnPanel.setLayout(new BoxLayout(registerBtnPanel, BoxLayout.X_AXIS));
 
         JButton registerBtn = new JButton("Register");
+        registerBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String firstName = first.getText();
+                String lastName = last.getText();
+                String userEmail = email.getText();
+                String userPassword = pass.getText();
+
+                if (registerUser(firstName, lastName, userEmail, userPassword)) {
+                    JOptionPane.showMessageDialog(null, "Registration Successful");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registration Failed");
+                }
+            }
+        });
         registerBtnPanel.add(registerBtn);
 
         registerPanel.add(registerBtnPanel);
@@ -204,8 +224,25 @@ public class register  extends JFrame{
         // Adding panels to the frame
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
-        
+
     }
+    private boolean registerUser(String firstName, String lastName, String email, String password) {
+    String url = "jdbc:postgresql:cihiplatform.db"; // Replace with your database path
+    String sql = "INSERT INTO users(first_name, last_name, email, password) VALUES(?,?,?,?)";
+
+    try (Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, firstName);
+        pstmt.setString(2, lastName);
+        pstmt.setString(3, email);
+        pstmt.setString(4, password);
+        pstmt.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        return false;
+    }
+}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

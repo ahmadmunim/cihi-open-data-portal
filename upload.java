@@ -2,7 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 public class upload extends JFrame{
+    private JTextField dataName;
+    private JTextField dateOfPub;
+    private JTextArea dataDesc;
+    private JTextField inputTag;
+    private JTextArea tags;
+    private File selectedDatasetFile;
+    private File selectedHeaderImage;
     public upload() {
         setTitle("Upload Data");
         ImageIcon frameLogo = new ImageIcon(getClass().getResource("mapleLeaf.png"));
@@ -223,6 +236,15 @@ public class upload extends JFrame{
             filePanel.setBackground(Color.LIGHT_GRAY);
 
             JButton uploadFileBtn = new JButton("Select File... *");
+            uploadFileBtn.addActionListener(e -> {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Dataset Files", "csv", "json", "xlsx"));
+                int result = fileChooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    selectedDatasetFile = fileChooser.getSelectedFile();
+                    // You can update the UI to show the selected file name
+                }
+            });
             uploadFileBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
             filePanel.add(uploadFileBtn);
 
@@ -231,6 +253,15 @@ public class upload extends JFrame{
             filePanel.add(fileTypesData);
 
             JButton uploadHeaderBtn = new JButton("Select Header Image...");
+            uploadHeaderBtn.addActionListener(e -> {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "pdf"));
+                int result = fileChooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    selectedHeaderImage = fileChooser.getSelectedFile();
+                    // You can update the UI to show the selected file name
+                }
+            });
             uploadHeaderBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
             filePanel.add(uploadHeaderBtn);
 
@@ -247,6 +278,7 @@ public class upload extends JFrame{
         uploadPanel.add(inputPanel);
 
         JButton uploadDataset = new JButton("Upload Dataset");
+        uploadDataset.addActionListener(e -> uploadDataset());
         uploadPanel.add(uploadDataset);
         uploadDataset.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -260,6 +292,30 @@ public class upload extends JFrame{
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
         
+    }
+    private void uploadDataset() {
+        String datasetName = dataName.getText();
+        String publicationDate = dateOfPub.getText();
+        String description = dataDesc.getText();
+        String tags = inputTag.getText();
+
+     String url = "jdbc:sqlite:your_database.db"; // Replace with your database path
+    String sql = "INSERT INTO datasets(name, publication_date, description, tags, file_path, image_path) VALUES(?,?,?,?,?,?)";
+
+    try (Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, datasetName);
+        pstmt.setString(2, publicationDate);
+        pstmt.setString(3, description);
+        pstmt.setString(4, tags);
+        pstmt.setString(5, selectedDatasetFile.getAbsolutePath());
+        pstmt.setString(6, selectedHeaderImage.getAbsolutePath());
+        pstmt.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Dataset uploaded successfully");
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error uploading dataset");
+    }
     }
 
     public static void main(String[] args) {
