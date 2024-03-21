@@ -8,7 +8,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class upload extends JFrame{
+public class upload extends JFrame implements Scene<upload> {
+
+    public static ActionListener makeActionListener(Window w) {
+        return e -> {
+            new upload().setVisible(true);
+            w.dispose();
+        };
+    }
+
     private JTextField dataName;
     private JTextField dateOfPub;
     private JTextArea dataDesc;
@@ -293,6 +301,7 @@ public class upload extends JFrame{
         add(centerPanel, BorderLayout.CENTER);
         
     }
+
     private void uploadDataset() {
         String datasetName = dataName.getText();
         String publicationDate = dateOfPub.getText();
